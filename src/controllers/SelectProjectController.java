@@ -153,6 +153,7 @@ public class SelectProjectController {
         Kanban.projetoAberto = 3;
         Kanban.telas("newName", event);
     }
+    
     @FXML
     private void excluirProjetoUm(MouseEvent event) {
         if (!Kanban.loginAdmin || Kanban.empresaAtual().getProjetos()[0] == null) {
@@ -207,8 +208,6 @@ public class SelectProjectController {
             loadProjetos();
         }
     }
-
-
 
     @FXML
     private void logout(ActionEvent event) {

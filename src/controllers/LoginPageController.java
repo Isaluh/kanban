@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import kanban.Kanban;
+import utils.Metodos;
 
 public class LoginPageController {
     
@@ -106,7 +107,8 @@ public class LoginPageController {
         String senha2Informada = cadastroConfirmarSenhaEmpresa.getText();
         if(nomeInserido.equals("") || senhaInformada.equals("") || senha2Informada.equals("")) {
             errorCadastro.setText("Há campos em branco");
-            // proibir espaços sequenciais, no inicio e no fim
+        } else if (!Metodos.verificarEspacos(nomeInserido)) {
+            errorCadastro.setText("Política de uso de espaços inadequada");
         }
         else{
             for(entities.Empresa empresa: Kanban.empresas){

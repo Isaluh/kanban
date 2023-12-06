@@ -14,12 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import entities.Empresa;
-import entities.Usuario;
 import controllers.SelectProjectController;
 import javafx.event.ActionEvent;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
@@ -52,33 +48,41 @@ public class Kanban extends Application {
     public static int paginaFazendo;
     public static int paginaFinalizado;
     
-    
+    // Método estático para obter a empresa atual com base no login do usuário.
     public static Empresa empresaAtual() {
+        // Verifica se o login é de um administrador.
         if (loginAdmin) {
+            // Itera sobre as empresas para encontrar a empresa com o mesmo nome do usuário atual.
             for (Empresa emp:empresas) {
                 if (currentUser.equals(emp.getNome())) {
                     return emp;
                 }
             }
         } else {
+            // Itera sobre as empresas para encontrar a empresa que contém o usuário atual.
             for (Empresa emp:empresas) {
+                // Verifica se a empresa não é nula e se o usuário atual pertence a ela.
                 if (emp != null && emp.getUsuarioPorNome(currentUser) != null) {
                     return emp;
                 }
             }
         }
-        
+        // Retorna null se não encontrar a empresa.
         return null;
     }
 
     @Override
+    // Método de inicialização do aplicativo.
     public void start(Stage stage) throws Exception {
+        // Configurações iniciais.
         telaSelecionada = stage;
         empresas = new Empresa[32];
         loginAdmin = false;
         paginaAFazer = 0;
         paginaFazendo = 0;
         paginaFinalizado = 0;
+        
+        // Criação de uma empresa de exemplo.
         empresas[0] = new Empresa("a","a");
         empresas[0].salvarSenha("a");
         empresas[0].criarProjeto("Projeto 1", "Projeto Criado Automaticamente");
@@ -86,6 +90,8 @@ public class Kanban extends Application {
         empresas[0].criarUsuario("Usuario 2", "123");
         empresas[0].criarArea("Area 1");
         empresas[0].logout();
+        
+        // Carregamento das telas usando FXMLLoader.
         Parent fxmlLoginPage = FXMLLoader.load(getClass().getResource("/views/loginPage.fxml"));
         sceneLoginPage = new Scene(fxmlLoginPage,  1535, 800);
         
@@ -131,72 +137,111 @@ public class Kanban extends Application {
         sceneNewArea = new Scene(fxmlNewArea.load(),  1535, 800);
         controllerNewArea = fxmlNewArea.getController();
         
+        // Configuração do ícone da aplicação.
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/imgs/imgKanban.png")));
         
+        // Configuração da cena inicial.
         stage.setScene(sceneLoginPage);
         stage.show();
     }
     
+    // Sobrecargas do método "telas" para lidar com eventos específicos.
     public static void telas(String tela, ActionEvent event){
         telas(tela);
     }
     public static void telas(String tela, MouseEvent event){
         telas(tela);
     }
+    // Método de navegação entre telas do aplicativo
     public static void telas(String tela){
         switch(tela){
+            // Caso: Página de seleção de projeto
             case "selectProject" -> {
+                // Oculta elementos desnecessários e carrega projetos
                 controllerSelectProject.esconderElementos();
                 controllerSelectProject.loadProjetos();
+                // Define a cena para a página de seleção de projeto
                 telaSelecionada.setScene(sceneSelectProject);
+                // Reinicia o índice do projeto aberto
                 projetoAberto = -1;
             }
+            // Caso: Página de criação de projeto
             case "createProject" -> {
+                // Oculta elementos desnecessários e carrega projetos
                 controllerCreateProject.esconderElementos();
                 controllerCreateProject.loadProjetos();
+                // Define a cena para a página de criação de projeto
                 telaSelecionada.setScene(sceneCreateProject);
             }
             case "kanbanPage" -> {
+                // Oculta elementos desnecessários e carrega atividades
                 controllerKanbanPage.esconderElementos();
                 controllerKanbanPage.loadAtividades();
+                // Define a cena para a página do Kanban
                 telaSelecionada.setScene(sceneKanbanPage);
                 controllerReload.esconderElementos();
                 controllerReload.loadAtividades();
                 telaSelecionada.setScene(sceneReload);
             }
+            // Caso: Página de renomeação de projeto
             case "newName" -> {
+                // Carrega a lista de projetos na página de renomeação
                 controllerNewNameProject.loadProjetos();
+                // Define a cena para a página de renomeação de projeto
                 telaSelecionada.setScene(sceneNewNameProject);
             }
+            // Caso: Página de criação de nova ação
             case "newAction" -> {
+                // Carrega listas necessárias na página de nova ação
                 controllerNewAction.loadAreasLista();
                 controllerNewAction.loadUsuariosLista();
                 controllerNewAction.loadAtividadesLista();
+                // Esconde elementos específicos da página de nova ação
                 controllerNewAction.esconderElementos();
+                // Carrega as atividades na página de nova ação
                 controllerNewAction.loadAtividades();
+                // Esconde o popup na página de nova ação
                 controllerNewAction.hidePopup();
+                // Define a cena para a página de nova ação
                 telaSelecionada.setScene(sceneNewAction);
+                // Esconde elementos específicos da página de recarregamento
                 controllerReload.esconderElementos();
+                // Carrega as atividades na página de recarregamento
                 controllerReload.loadAtividades();
+                // Define a cena para a página de recarregamento
                 telaSelecionada.setScene(sceneReload);
             }
+            // Caso: Página de login
             case "loginPage" -> telaSelecionada.setScene(sceneLoginPage);
+            // Caso: Página de criação de nova atividade
             case "newActivit" -> {
+                // Esconde elementos específicos da página de nova atividade
                 controllerNewActivity.esconderElementos();
+                // Carrega as atividades na página de nova atividade
                 controllerNewActivity.loadAtividades();
+                // Define a cena para a página de nova atividade
                 telaSelecionada.setScene(sceneNewActivit);
             }
+            // Caso: Página de criação de novo usuário
             case "newUser" -> {
+                // Esconde elementos específicos da página de novo usuário
                 controllerNewUser.esconderElementos();
+                // Carrega os projetos na página de novo usuário
                 controllerNewUser.loadProjetos();
+                // Define a cena para a página de novo usuário
                 telaSelecionada.setScene(sceneNewUser);
             }
+            // Caso: Página de criação de nova área
             case "newArea" -> {
+                // Esconde elementos específicos da página de nova área
                 controllerNewArea.esconderElementos();
+                // Carrega os projetos na página de nova área
                 controllerNewArea.loadProjetos();
+                // Define a cena para a página de nova área
                 telaSelecionada.setScene(sceneNewArea);
             }
         }
+        // Verifica se a tela desejada é a página do Kanban
         if (tela.equals("kanbanPage")) {
             controllerKanbanPage.esconderElementos();
             controllerKanbanPage.loadAtividades();
