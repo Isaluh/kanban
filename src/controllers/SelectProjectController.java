@@ -5,7 +5,10 @@ import entities.Projeto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
@@ -155,16 +158,27 @@ public class SelectProjectController {
         if (!Kanban.loginAdmin || Kanban.empresaAtual().getProjetos()[0] == null) {
             return;
         }
-        Kanban.empresaAtual().deletarProjeto(0);
-        loadProjetos();
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Deletar "+Kanban.empresaAtual().getProjetos()[0].getNome()+" ?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Kanban.empresaAtual().deletarProjeto(0);
+            loadProjetos();
+        }
+        
     }
     @FXML
     private void excluirProjetoDois(MouseEvent event) {
         if (!Kanban.loginAdmin || Kanban.empresaAtual().getProjetos()[1] == null) {
             return;
         }
-        Kanban.empresaAtual().deletarProjeto(1);
-        loadProjetos();
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Deletar "+Kanban.empresaAtual().getProjetos()[1].getNome()+" ?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Kanban.empresaAtual().deletarProjeto(1);
+            loadProjetos();
+        }
     }
 
     @FXML
@@ -172,16 +186,26 @@ public class SelectProjectController {
         if (!Kanban.loginAdmin || Kanban.empresaAtual().getProjetos()[2] == null) {
             return;
         }
-        Kanban.empresaAtual().deletarProjeto(2);
-        loadProjetos();
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Deletar "+Kanban.empresaAtual().getProjetos()[2].getNome()+" ?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Kanban.empresaAtual().deletarProjeto(2);
+            loadProjetos();
+        }
     }
     @FXML
     private void excluirProjetoQuatro(MouseEvent event) {
         if (!Kanban.loginAdmin || Kanban.empresaAtual().getProjetos()[3] == null) {
             return;
         }
-        Kanban.empresaAtual().deletarProjeto(3);
-        loadProjetos();
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Deletar "+Kanban.empresaAtual().getProjetos()[3].getNome()+" ?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Kanban.empresaAtual().deletarProjeto(3);
+            loadProjetos();
+        }
     }
 
 
