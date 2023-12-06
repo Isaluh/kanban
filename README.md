@@ -13,7 +13,7 @@ Projeto feito para um trabalho da faculdade que consiste em cadastrar empresa, u
 <br>
 
 <p align="center">
-  <img alt="Imagem" src="img/layout.jpg" width="100%">
+  <img alt="Imagem" src="https://media.discordapp.net/attachments/1103518110843150416/1179957186126946334/image.png?ex=657babc3&is=656936c3&hm=48167f7bc56af5f1797e6ce0d8e4c657676b9aca53f58b3d67d338ec50483cd2&=&format=webp&quality=lossless&width=934&height=486" width="100%">
 </p>
 
 ## 🎓 Tecnologias
