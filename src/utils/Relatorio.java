@@ -53,7 +53,7 @@ public class Relatorio {
         String[][] acoesAFazer = new String[numAcoes+1][2];
         String[][] acoesFazendo = new String[numAcoes+1][2];
         String[][] acoesFinalizado = new String[numAcoes+1][2];
-        for (int i = 0; i < acoesAFazer.length; i++) {
+        for (int i = 0; i < numAcoes+1; i++) {
             acoesAFazer[i][0] = "";
             acoesAFazer[i][1] = "";
             acoesFazendo[i][0] = "";
@@ -80,7 +80,17 @@ public class Relatorio {
                 }
             }
         }
-        for (int i = 0; !acoesAFazer[i][0].equals("") || !acoesFazendo[i][0].equals("") || !acoesAFazer[i][0].equals(""); i++) {
+        int maior_ = 0;
+        if (a>=b && a>=c) {
+            maior_ = a;
+        }
+        if (b>=a && b>=c) {
+            maior_ = b;
+        }
+        if (c>=a && c>=b) {
+            maior_ = c;
+        }
+        for (int i = 0; i < maior_;i++) {
             relatorio += "|"+xS("-",maior)+"|"+xS("-",maior)+"|"+xS("-", maior)+"|\n";
             primeiraColuna = xS(" ", (int) Math.floor((maior-acoesAFazer[i][0].length() )/2.0)) +  acoesAFazer[i][0]  +xS(" ", (int) Math.ceil((maior-acoesAFazer[i][0].length() )/2.0));
             segundaColuna = xS(" ", (int) Math.floor((maior-acoesFazendo[i][0].length() )/2.0)) +  acoesFazendo[i][0]  +xS(" ", (int) Math.ceil((maior-acoesFazendo[i][0].length() )/2.0));
@@ -218,6 +228,7 @@ public class Relatorio {
         emp.getProjetos()[0].getAtividadePorNome("atividade 1").criarAcao("acao 2", "usuario", "financeiro", 1701291822, 1701900000);
         emp.getProjetos()[0].getAtividadePorNome("atividade 1").criarAcao("acao 3", "usuario", "financeiro", 1701291822, 1701900000);
         emp.getProjetos()[0].getAtividadePorNome("atividade 1").getAcaoPorNome("acao 2").aumentarPorcentagem(1);
+        emp.getProjetos()[0].getAtividadePorNome("atividade 1").getAcaoPorNome("acao").aumentarPorcentagem(1);
 //        emp.getProjetos()[0].getAtividadePorNome("atividade 1").getAcaoPorNome("acao 2").aumentarPorcentagem(-0.5);
 //        emp.getProjetos()[0].getAtividadePorNome("atividade 1").getAcaoPorNome("acao 3").aumentarPorcentagem(1.7);
         System.out.println(criarRelatorio(emp.getProjetos()[0]));

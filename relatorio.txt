@@ -1,45 +1,51 @@
-RELATORIO PROJETO "nome do projeto" DD/MM/AAAA HH:MM
+RELATORIO PROJETO "nome" 06/12/2023 23:58
+DESCRIÇÃO: descricao
 
 *PREVIEW
- _______________________________________________________________________
-/       A Fazer         |        Fazendo        |      Finalizado       \
-|-----------------------|-----------------------|-----------------------|
-|                       |                       |                       |
-|                       |                       |                       |
-|-----------------------|-----------------------|-----------------------|
-|                       |                       |                       |
-|                       |                       |                       |
-|-----------------------|-----------------------|-----------------------|
-|                       |                       |                       |
-|                       |                       |                       |
-|-----------------------|-----------------------|-----------------------|
-|                       |                       |                       |
-|                       |                       |                       |
-|-----------------------|-----------------------|-----------------------|
-|                       |                       |                       |
-|                       |                       |                       |
-|_______________________|_______________________|_______________________|
+ ______________________________________________________________
+/      A Fazer       |      Fazendo       |     Finalizado     \
+|--------------------|--------------------|--------------------|
+|     acao (0%)      |                    |   acao 2 (100%)    |
+|     [usuario]      |                    |     [usuario]      |
+|--------------------|--------------------|--------------------|
+|    acao 3 (0%)     |                    |                    |
+|     [usuario]      |                    |                    |
+|____________________|____________________|____________________|
 
 #STATUS USUARIOS
-
-Usuário 1:
-    Designado a: X% das Ações (k ações)
-    Ações atrasadas:
-        Ação 4 (Atividade 1) [75%]: A X dias
-    Ações Completas:
-        Acao 8 (Atividade 3): A X dias
-        Acao 5 (Atividade 2): A X dias
+usuario:
+        Designado a: 100% das Ações (3)
+        Ações Atrasadas:
+                acao(atividade 1)[0%]: Atrasado a 4 hora(s)
+                acao 3(atividade 1)[0%]: Atrasado a 4 hora(s)
+        Ações Completas:
+                acao 2(atividade 1)[100%]: atrasado em 4 hora(s)
+        Ações em Andamento:
 
 #STATUS ATIVIDADES
-Atividade 1:
-    Num ações: X Ações
-    Concluídas: K% (x/N)
+atividade 1:
+        Número de Ações: 3
+        Número de Ações em Andamento: 0
+        Número de Ações Atrasadas: 2
+        Número de Ações Completas: 1
+#STATUS AÇÕES
+acao(atividade 1):
+        Início: 06/12
+        Prazo: 06/12
+        Porcentagem: 0%
+        Status: A Fazer
+        Histórico:
+acao 2(atividade 1):
+        Início: 29/11
+        Término: 06/12
+        Prazo: 06/12
+        Porcentagem: 100%
+        Status: Finalizado
+        Histórico: 7 dia(s) no Fazendo
+acao 3(atividade 1):
+        Início: 29/11
+        Prazo: 06/12
+        Porcentagem: 0%
+        Status: A Fazer
+        Histórico:
 
-    
-
-*STATUS AÇÕES
-Acao 1:
-    Dono: Usuario 1
-    Atividade: Atividade 1
-    Porcentagem: X%
-    Historico: Passou X dias no A Fazer -> Y Dias no Fazendo
