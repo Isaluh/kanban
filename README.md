@@ -29,7 +29,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 📔 Projeto
 
 As empresas cadastradas criam os seus projetos e dentro de cada, terá um quadro Kanban (Á fazer, fazendo e finalizado). 
-<br> Serão criadas áreas (departamento), usuários responsáveis, atiidade e ação. 
+<br> Serão criadas áreas (departamento), usuários responsáveis, atividade e ação. 
 <br> Ao decorrer dos dias, o usuário responsável aumentará a porcentagem da ação indicando a evolução da tarefa (5% em 5%).
 Obs: Não responsivo. Resolução: 1535 x 800.
 
